@@ -11,9 +11,6 @@ import com.trustwave.baristamatic.service.IngredientService;
 @Component
 public class Baristamatic {
 	
-	@Autowired
-	private IngredientService ingredientService;
-	
 	public static void main(String...args) {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
@@ -24,4 +21,6 @@ public class Baristamatic {
 
 	}
 	
+	@Autowired
+	private IngredientService ingredientService;
 }

@@ -11,30 +11,30 @@
 						http://www.springframework.org/schema/util/spring-util.xsd
            				">
 	
-	<context:component-scan base-package="com.trustwave.baristamatic.service" />
+	<context:component-scan base-package="com.trustwave.baristamatic.service, com.trustwave.baristamatic.service.impl, com.trustwave.baristamatic.ui" />
 	
 	<util:map id="ingredientCountMap" map-class="java.util.HashMap">
-  		<entry key="coffee" value="10" />
-  		<entry key="decafCoffee" value="10" />
-  		<entry key="sugar" value="10" />
-  		<entry key="cream" value="10" />
-  		<entry key="espresso" value="10" />
-  		<entry key="steamedMilk" value="10" />
-  		<entry key="cocoa" value="10" />
-  		<entry key="whippedCream" value="10" />
-  		<entry key="foamedMilk" value="10" />
+  		<entry key="Coffee" value="10" />
+  		<entry key="Decaf Coffee" value="10" />
+  		<entry key="Sugar" value="10" />
+  		<entry key="Cream" value="10" />
+  		<entry key="Espresso" value="10" />
+  		<entry key="Steamed Milk" value="10" />
+  		<entry key="Cocoa" value="10" />
+  		<entry key="WhippedCream" value="10" />
+  		<entry key="Foamed Milk" value="10" />
 	</util:map>
 	
 	<util:map id="ingredientPriceMap" map-class="java.util.HashMap">
-  		<entry key="coffee" value="0.75" />
-  		<entry key="decafCoffee" value="0.75" />
-  		<entry key="sugar" value="0.25" />
-  		<entry key="cream" value="0.25" />
-  		<entry key="espresso" value="0.35" />
-  		<entry key="steamedMilk" value="0.35" />
-  		<entry key="cocoa" value="1.10" />
-  		<entry key="whippedCream" value="0.90" />
-  		<entry key="foamedMilk" value="1.00" />
+  		<entry key="Coffee" value="0.75" />
+  		<entry key="Decaf Coffee" value="0.75" />
+  		<entry key="Sugar" value="0.25" />
+  		<entry key="Cream" value="0.25" />
+  		<entry key="Espresso" value="0.35" />
+  		<entry key="Steamed Milk" value="0.35" />
+  		<entry key="Cocoa" value="1.10" />
+  		<entry key="WhippedCream" value="0.90" />
+  		<entry key="FoamedMilk" value="1.00" />
 	</util:map>
 	
 	
