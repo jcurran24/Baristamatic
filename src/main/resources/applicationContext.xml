@@ -21,7 +21,7 @@
   		<entry key="Espresso" value="10" />
   		<entry key="Steamed Milk" value="10" />
   		<entry key="Cocoa" value="10" />
-  		<entry key="WhippedCream" value="10" />
+  		<entry key="Whipped Cream" value="10" />
   		<entry key="Foamed Milk" value="10" />
 	</util:map>
 	
@@ -33,8 +33,8 @@
   		<entry key="Espresso" value="0.35" />
   		<entry key="Steamed Milk" value="0.35" />
   		<entry key="Cocoa" value="1.10" />
-  		<entry key="WhippedCream" value="0.90" />
-  		<entry key="FoamedMilk" value="1.00" />
+  		<entry key="Whipped Cream" value="0.90" />
+  		<entry key="Foamed Milk" value="1.00" />
 	</util:map>
 	
 	

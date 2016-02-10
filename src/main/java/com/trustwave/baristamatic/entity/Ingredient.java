@@ -1,7 +1,10 @@
 package com.trustwave.baristamatic.entity;
 
+import java.math.BigDecimal;
+
 public abstract class Ingredient {
 	protected int ingredientId;
+	protected BigDecimal price;
 	
 	public Ingredient(int ingredientId) {
 		this.ingredientId = ingredientId;
@@ -15,6 +18,15 @@ public abstract class Ingredient {
 	
 	public void setIngredientId(int ingredientId) {
 		this.ingredientId = ingredientId;
+	}
+	
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+	
+	
+	public BigDecimal getPrice() {
+		return price;
 	}
 
 	/* (non-Javadoc)

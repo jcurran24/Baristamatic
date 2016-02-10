@@ -3,7 +3,6 @@ package com.trustwave.baristamatic.entity.drink.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.trustwave.baristamatic.entity.Drink;
 import com.trustwave.baristamatic.entity.Ingredient;
 import com.trustwave.baristamatic.entity.ingredient.impl.BlackCoffee;
@@ -31,5 +30,4 @@ public class Coffee implements Drink {
 	public int getDrinkId() {
 		return drinkId;
 	}
-
 }
