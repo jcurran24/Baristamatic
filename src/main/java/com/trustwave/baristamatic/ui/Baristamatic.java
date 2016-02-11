@@ -1,11 +1,19 @@
 package com.trustwave.baristamatic.ui;
 
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Set;
+
+import org.reflections.ReflectionUtils;
+import org.reflections.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
+import com.trustwave.baristamatic.entity.Drink;
 import com.trustwave.baristamatic.enumtype.IngredientType;
+import com.trustwave.baristamatic.service.DrinkService;
 import com.trustwave.baristamatic.service.IngredientService;
 
 @Component
@@ -19,17 +27,22 @@ public class Baristamatic {
 		System.out.println("Welcome to the Barista-matic\n");
 		System.out.println("Below are the following current inventory of drink ingredients available:");
 		
-		System.out.println(IngredientType.COFFEE.getName() + ": " +  baristamatic.ingredientService.retrieveInventory(IngredientType.COFFEE));
-		System.out.println(IngredientType.DECAF_COFFEE.getName() + ": " +  baristamatic.ingredientService.retrieveInventory(IngredientType.DECAF_COFFEE));
-		System.out.println(IngredientType.CREAM.getName() + ": " +  baristamatic.ingredientService.retrieveInventory(IngredientType.CREAM));
-		System.out.println(IngredientType.ESPRESSO.getName() + ": " +  baristamatic.ingredientService.retrieveInventory(IngredientType.ESPRESSO));
-		System.out.println(IngredientType.SUGAR.getName() + ": " +  baristamatic.ingredientService.retrieveInventory(IngredientType.SUGAR));
-		System.out.println(IngredientType.COCOA.getName() + ": " +  baristamatic.ingredientService.retrieveInventory(IngredientType.COCOA));
-		System.out.println(IngredientType.STEAMED_MILK.getName() + ": " +  baristamatic.ingredientService.retrieveInventory(IngredientType.STEAMED_MILK));
-		System.out.println(IngredientType.FOAMED_MILK.getName() + ": " +  baristamatic.ingredientService.retrieveInventory(IngredientType.FOAMED_MILK));
-		System.out.println(IngredientType.WHIPPED_CREAM.getName() + ": " +  baristamatic.ingredientService.retrieveInventory(IngredientType.WHIPPED_CREAM));
+		for (IngredientType ingredientType : IngredientType.values()) {
+			  System.out.println(ingredientType.getName() + ": " + baristamatic.ingredientService.retrieveInventory(ingredientType));
+		}
+		
+		List<Drink> drinks = baristamatic.drinkService.retrieveAllDrinks();
+		
+		System.out.println("\nDrink Menu: ");
+		
+		for(Drink drink : drinks) {
+			System.out.println(drink.getName() + ": " + NumberFormat.getCurrencyInstance().format(baristamatic.drinkService.calculatedDrinkCost(drink))); 
+		}	
 	}
 	
 	@Autowired
 	private IngredientService ingredientService;
+	
+	@Autowired
+	private DrinkService drinkService;
 }

@@ -2,15 +2,22 @@ package com.trustwave.baristamatic.entity;
 
 import java.math.BigDecimal;
 
+import com.trustwave.baristamatic.enumtype.IngredientType;
+
 public abstract class Ingredient {
 	protected int ingredientId;
 	protected BigDecimal price;
+	protected IngredientType ingredientType;
 	
-	public Ingredient(int ingredientId) {
+	public Ingredient(int ingredientId, IngredientType ingredientType, BigDecimal price) {
 		this.ingredientId = ingredientId;
+		this.ingredientType = ingredientType;
+		this.price = price;
 	}
 	
-	public abstract String getName();
+	public String getName() {
+		return ingredientType.getName();
+	}
 	
 	public int getIngredientId() {
 		return ingredientId;
@@ -24,9 +31,22 @@ public abstract class Ingredient {
 		this.price = price;
 	}
 	
-	
 	public BigDecimal getPrice() {
 		return price;
+	}
+	
+	/**
+	 * @return the ingredientType
+	 */
+	public IngredientType getIngredientType() {
+		return ingredientType;
+	}
+
+	/**
+	 * @param ingredientType the ingredientType to set
+	 */
+	public void setIngredientType(IngredientType ingredientType) {
+		this.ingredientType = ingredientType;
 	}
 
 	/* (non-Javadoc)
@@ -37,6 +57,9 @@ public abstract class Ingredient {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ingredientId;
+		result = prime * result
+				+ ((ingredientType == null) ? 0 : ingredientType.hashCode());
+		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		return result;
 	}
 
@@ -54,6 +77,15 @@ public abstract class Ingredient {
 		Ingredient other = (Ingredient) obj;
 		if (ingredientId != other.ingredientId)
 			return false;
+		if (ingredientType != other.ingredientType)
+			return false;
+		if (price == null) {
+			if (other.price != null)
+				return false;
+		} else if (!price.equals(other.price))
+			return false;
 		return true;
 	}
+
+	
 }

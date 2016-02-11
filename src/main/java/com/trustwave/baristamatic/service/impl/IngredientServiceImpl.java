@@ -32,5 +32,22 @@ public class IngredientServiceImpl implements IngredientService {
 	public BigDecimal retrieveCost(IngredientType ingredientType) {
 		return BigDecimal.valueOf(Double.valueOf(ingredientPriceMap.get(ingredientType.getIngredientId())));
 	}
+	
+	public Map<String, String> getIngredientPriceMap() {
+		return ingredientPriceMap;
+	}
+	
+	
+	public void restockIngredients() {
+		ingredientCountMap.put("Coffee", "10");
+		ingredientCountMap.put("Decaf Coffee", "10");
+		ingredientCountMap.put("Sugar", "10");
+		ingredientCountMap.put("Cream", "10");
+		ingredientCountMap.put("Espresso", "10");
+		ingredientCountMap.put("Steamed Milk", "10");
+		ingredientCountMap.put("Cocoa", "10");
+		ingredientCountMap.put("Whipped Cream", "10");
+		ingredientCountMap.put("Foamed Milk", "10");
+	}
 
 }

@@ -1,11 +1,13 @@
 package com.trustwave.baristamatic.entity.drink.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.trustwave.baristamatic.entity.Drink;
 import com.trustwave.baristamatic.entity.Ingredient;
-import com.trustwave.baristamatic.entity.ingredient.impl.Espresso;
+import com.trustwave.baristamatic.entity.ingredient.factory.IngredientFactory;
 import com.trustwave.baristamatic.enumtype.IngredientType;
 
 public class CaffeAmericano implements Drink {
@@ -13,11 +15,11 @@ public class CaffeAmericano implements Drink {
 	private int drinkId;
 	private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 	
-	public CaffeAmericano(int drinkId) {
+	public CaffeAmericano(int drinkId, Map<String, String> ingredientPriceMap) {
 		this.drinkId = drinkId;
-		ingredients.add(new Espresso(IngredientType.ESPRESSO.getIngredientId()));
-		ingredients.add(new Espresso(IngredientType.ESPRESSO.getIngredientId()));
-		ingredients.add(new Espresso(IngredientType.ESPRESSO.getIngredientId()));
+		ingredients.add(IngredientFactory.createIngredient(IngredientType.ESPRESSO, BigDecimal.valueOf(Double.valueOf(ingredientPriceMap.get(IngredientType.ESPRESSO.getName())))));
+		ingredients.add(IngredientFactory.createIngredient(IngredientType.ESPRESSO, BigDecimal.valueOf(Double.valueOf(ingredientPriceMap.get(IngredientType.ESPRESSO.getName())))));
+		ingredients.add(IngredientFactory.createIngredient(IngredientType.ESPRESSO, BigDecimal.valueOf(Double.valueOf(ingredientPriceMap.get(IngredientType.ESPRESSO.getName())))));
 	}
 
 	public List<Ingredient> getIngredients() {
@@ -26,5 +28,10 @@ public class CaffeAmericano implements Drink {
 	
 	public int getDrinkId() {
 		return drinkId;
+	}
+
+	@Override
+	public String getName() {
+		return "Caffe Americano";
 	}
 }
