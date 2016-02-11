@@ -4,19 +4,19 @@ import java.math.BigDecimal;
 
 import com.trustwave.baristamatic.enumtype.IngredientType;
 
-public abstract class Ingredient {
+public class Ingredient {
 	protected int ingredientId;
 	protected BigDecimal price;
-	protected IngredientType ingredientType;
+	protected String name;
 	
-	public Ingredient(int ingredientId, IngredientType ingredientType, BigDecimal price) {
+	public Ingredient(int ingredientId, String name, BigDecimal price) {
 		this.ingredientId = ingredientId;
-		this.ingredientType = ingredientType;
+		this.name = name;
 		this.price = price;
 	}
 	
 	public String getName() {
-		return ingredientType.getName();
+		return name;
 	}
 	
 	public int getIngredientId() {
@@ -34,20 +34,6 @@ public abstract class Ingredient {
 	public BigDecimal getPrice() {
 		return price;
 	}
-	
-	/**
-	 * @return the ingredientType
-	 */
-	public IngredientType getIngredientType() {
-		return ingredientType;
-	}
-
-	/**
-	 * @param ingredientType the ingredientType to set
-	 */
-	public void setIngredientType(IngredientType ingredientType) {
-		this.ingredientType = ingredientType;
-	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -57,8 +43,7 @@ public abstract class Ingredient {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ingredientId;
-		result = prime * result
-				+ ((ingredientType == null) ? 0 : ingredientType.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		return result;
 	}
@@ -77,7 +62,10 @@ public abstract class Ingredient {
 		Ingredient other = (Ingredient) obj;
 		if (ingredientId != other.ingredientId)
 			return false;
-		if (ingredientType != other.ingredientType)
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
 			return false;
 		if (price == null) {
 			if (other.price != null)
@@ -86,6 +74,4 @@ public abstract class Ingredient {
 			return false;
 		return true;
 	}
-
-	
 }

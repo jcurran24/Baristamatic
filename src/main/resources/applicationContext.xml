@@ -13,29 +13,101 @@
 	
 	<context:component-scan base-package="com.trustwave.baristamatic.service, com.trustwave.baristamatic.service.impl, com.trustwave.baristamatic.ui" />
 	
+	<util:map id="ingredientIdListingMap" map-class="java.util.HashMap">
+  		<entry key="1" value="Cocoa" />
+  		<entry key="2" value="Coffee" />
+  		<entry key="3" value="Cream" />
+  		<entry key="4" value="Decaf Coffee" />
+  		<entry key="5" value="Espresso" />
+  		<entry key="6" value="Foamed Milk" />
+  		<entry key="7" value="Steamed Milk" />
+  		<entry key="8" value="Sugar" />
+  		<entry key="9" value="Whipped Cream" />
+	</util:map>
+	
 	<util:map id="ingredientCountMap" map-class="java.util.HashMap">
-  		<entry key="Coffee" value="10" />
-  		<entry key="Decaf Coffee" value="10" />
-  		<entry key="Sugar" value="10" />
-  		<entry key="Cream" value="10" />
-  		<entry key="Espresso" value="10" />
-  		<entry key="Steamed Milk" value="10" />
   		<entry key="Cocoa" value="10" />
-  		<entry key="Whipped Cream" value="10" />
+  		<entry key="Coffee" value="10" />
+  		<entry key="Cream" value="10" />
+  		<entry key="Decaf Coffee" value="10" />
+  		<entry key="Espresso" value="10" />
   		<entry key="Foamed Milk" value="10" />
+  		<entry key="Steamed Milk" value="10" />
+  		<entry key="Sugar" value="10" />
+  		<entry key="Whipped Cream" value="10" />
 	</util:map>
 	
 	<util:map id="ingredientPriceMap" map-class="java.util.HashMap">
+		<entry key="Cocoa" value="1.10" />
   		<entry key="Coffee" value="0.75" />
-  		<entry key="Decaf Coffee" value="0.75" />
-  		<entry key="Sugar" value="0.25" />
   		<entry key="Cream" value="0.25" />
+  		<entry key="Decaf Coffee" value="0.75" />
   		<entry key="Espresso" value="0.35" />
-  		<entry key="Steamed Milk" value="0.35" />
-  		<entry key="Cocoa" value="1.10" />
-  		<entry key="Whipped Cream" value="0.90" />
   		<entry key="Foamed Milk" value="1.00" />
+  		<entry key="Steamed Milk" value="0.35" />
+  		<entry key="Sugar" value="0.25" />
+  		<entry key="Whipped Cream" value="0.90" />
 	</util:map>
 	
+	<util:map id="drinkChoiceMap" map-class="java.util.HashMap">
+		<entry key="1" value="Caffe Americano" />
+		<entry key="2" value="Caffe Latte" />
+  		<entry key="3" value="Caffe Mocha" />
+  		<entry key="4" value="Cappuccino" />
+  		<entry key="5" value="Coffee" />
+  		<entry key="6" value="Decaf Coffee" />
+	</util:map>
+	
+	<util:list id="caffeAmericanoIngredientIds">
+      <value>5</value>
+      <value>5</value>
+      <value>5</value>
+   </util:list>
+
+   <util:list id="caffeLatteIngredientIds">
+      <value>5</value>
+      <value>5</value>
+      <value>7</value>
+   </util:list>
+   
+   <util:list id="caffeMochaIngredientIds">
+      <value>5</value>
+      <value>1</value>
+      <value>7</value>
+      <value>9</value>
+   </util:list>
+   
+   <util:list id="cappuccinoIngredientIds">
+      <value>5</value>
+      <value>5</value>
+      <value>7</value>
+      <value>6</value>
+   </util:list>
+   
+   <util:list id="coffeeIngredientIds">
+      <value>2</value>
+      <value>2</value>
+      <value>2</value>
+      <value>8</value>
+      <value>3</value>
+   </util:list>
+   
+   <util:list id="decafCoffeeIngredientIds">
+      <value>4</value>
+      <value>4</value>
+      <value>4</value>
+      <value>8</value>
+      <value>3</value>
+   </util:list>
+
+   <util:map id="drinkIdToIngredientIdsList" value-type="java.util.List">
+      <!-- Map between the drink id key and the List of it's ingredient ids -->
+      <entry key="1" value-ref="caffeAmericanoIngredientIds" />
+      <entry key="2" value-ref="caffeLatteIngredientIds" />
+      <entry key="3" value-ref="caffeMochaIngredientIds" />
+      <entry key="4" value-ref="cappuccinoIngredientIds" />
+      <entry key="5" value-ref="coffeeIngredientIds" />
+      <entry key="6" value-ref="decafCoffeeIngredientIds" />
+   </util:map>
 	
 </beans>

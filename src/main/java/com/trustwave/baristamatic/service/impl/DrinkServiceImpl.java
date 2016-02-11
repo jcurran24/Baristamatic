@@ -4,20 +4,17 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.trustwave.baristamatic.entity.Drink;
 import com.trustwave.baristamatic.entity.Ingredient;
-import com.trustwave.baristamatic.entity.drink.impl.CaffeAmericano;
-import com.trustwave.baristamatic.entity.drink.impl.CaffeLatte;
-import com.trustwave.baristamatic.entity.drink.impl.CaffeMocha;
-import com.trustwave.baristamatic.entity.drink.impl.Cappuccino;
-import com.trustwave.baristamatic.entity.drink.impl.Coffee;
-import com.trustwave.baristamatic.entity.drink.impl.DecafCoffee;
+
 import com.trustwave.baristamatic.entity.drink.util.DrinkCostUtil;
 import com.trustwave.baristamatic.service.DrinkService;
 import com.trustwave.baristamatic.service.IngredientService;
@@ -27,18 +24,27 @@ public class DrinkServiceImpl implements DrinkService {
 	@Autowired
 	private IngredientService ingredientService;
 	
+	@Value("#{drinkChoiceMap}")
+	private Map<Integer, String> drinkChoiceMap;
+	
+	@Value("#{ingredientIdListingMap}")
+	private Map<Integer, String> ingredientIdListingMap;
+	
+	@Value("#{drinkIdToIngredientIdsList}")
+	private Map<Integer, List<Integer>> drinkIdToIngredientIdsList;
+	
 	private List<Drink> allDrinks = new ArrayList<Drink>();
 	
 	@PostConstruct
 	public void initAllDrinks() {
 		Map<String, String> ingredientPriceMap = ingredientService.getIngredientPriceMap();
-		allDrinks.add(new Coffee(1,  ingredientPriceMap));
-		allDrinks.add(new DecafCoffee(2, ingredientPriceMap));
-		allDrinks.add(new CaffeLatte(3, ingredientPriceMap));
-		allDrinks.add(new CaffeAmericano(4, ingredientPriceMap));
-		allDrinks.add(new CaffeMocha(5, ingredientPriceMap));
-		allDrinks.add(new Cappuccino(6, ingredientPriceMap));
+		Set<Integer> drinkChoiceKeys = drinkChoiceMap.keySet();
+		for(Integer drinkId : drinkChoiceKeys) {
+			List<Integer> ingredientIds = drinkIdToIngredientIdsList.get(drinkId);
+			allDrinks.add(new Drink(drinkId.intValue(), drinkChoiceMap.get(drinkId),  ingredientPriceMap, ingredientIds, ingredientIdListingMap));
+		}
 	}
+	
 	
 	@Override
 	public List<Drink> retrieveAllDrinks() {
@@ -50,12 +56,18 @@ public class DrinkServiceImpl implements DrinkService {
 		
 		boolean isInStock = true;
 		for(Ingredient ingredient : ingredients) {
-			if(ingredientService.retrieveInventory(ingredient.getIngredientType()) < 1) {
+			if(ingredientService.retrieveInventory(ingredient.getIngredientId()) < 1) {
 				isInStock = false;
 				break;
 			}
 		}
 		return isInStock;
+	}
+	
+	public void vendDrink(Drink drink) {
+		for(Ingredient ingredient : drink.getIngredients()) {
+			ingredientService.takeIngredient(ingredient.getIngredientId());
+		}
 	}
 	
 	public BigDecimal calculatedDrinkCost(Drink drink) {
