@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.trustwave.baristamatic.entity.Ingredient;
-import com.trustwave.baristamatic.enumtype.IngredientType;
 
 public interface IngredientService {
 	

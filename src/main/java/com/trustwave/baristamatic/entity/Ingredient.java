@@ -2,7 +2,6 @@ package com.trustwave.baristamatic.entity;
 
 import java.math.BigDecimal;
 
-import com.trustwave.baristamatic.enumtype.IngredientType;
 
 public class Ingredient {
 	protected int ingredientId;

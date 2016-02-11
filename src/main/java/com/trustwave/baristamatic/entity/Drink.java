@@ -9,6 +9,7 @@ public class Drink {
 	private int drinkId;
 	private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 	private String name;
+	private boolean inStock;
 	
 	public Drink(int drinkId, String name, Map<String, String> ingredientPriceMap, List<Integer> ingredientIds, Map<Integer, String> ingredientIdToIngredientMap) {
 		this.drinkId = drinkId;
@@ -29,5 +30,19 @@ public class Drink {
 
 	public String getName() {
 		return name;
+	}
+
+	/**
+	 * @return the inStock
+	 */
+	public boolean isInStock() {
+		return inStock;
+	}
+
+	/**
+	 * @param inStock the inStock to set
+	 */
+	public void setInStock(boolean inStock) {
+		this.inStock = inStock;
 	}
 }

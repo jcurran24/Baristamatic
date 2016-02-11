@@ -3,20 +3,14 @@ package com.trustwave.baristamatic.ui;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-import org.reflections.ReflectionUtils;
-import org.reflections.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.trustwave.baristamatic.entity.Drink;
 import com.trustwave.baristamatic.entity.Ingredient;
-import com.trustwave.baristamatic.enumtype.IngredientType;
 import com.trustwave.baristamatic.service.DrinkService;
 import com.trustwave.baristamatic.service.IngredientService;
 
@@ -44,8 +38,8 @@ public class Baristamatic {
 		
 			int i = 1;
 			for(Drink drink : drinks) {
-				System.out.println(Integer.valueOf(i) + "," + drink.getName() + "," + NumberFormat.getCurrencyInstance().format(baristamatic.drinkService.calculatedDrinkCost(drink)) + "," 
-						+ baristamatic.drinkService.isInStock(drink)); 
+				System.out.println(drink.getDrinkId() + "," + drink.getName() + "," + NumberFormat.getCurrencyInstance().format(baristamatic.drinkService.calculatedDrinkCost(drink)) + "," 
+						+ baristamatic.drinkService.isInStock(drink));
 			}
 		
 		
@@ -56,7 +50,7 @@ public class Baristamatic {
 			
 			int ch;
 			try {
-				if ((ch = System.in.read ()) != -1) {
+				if ((ch = System.in.read()) != -1) {
 				     switch(((char) ch)) {
 				     	case 'R':
 				     	case 'r':
@@ -66,26 +60,26 @@ public class Baristamatic {
 				     	case 'q':
 				     		isNotEnd = false;
 				     		break;
-				     	case '1':
-				     	case '2':
-				     	case '3':
-				     	case '4':
-				     	case '5':
-				     	case '6':
-				     		isNotEnd = false;
-				     		break;
+				     	default: 
+				     		if(baristamatic.drinkService.isDrinkChoice((char)ch)) {
+				     			Drink theDrink = baristamatic.drinkService.vendDrink(ch);
+				     			System.out.println((theDrink.isInStock() ? "Dispensing: " : "Out Of Stock: ") + theDrink.getName() + "\n\n");
+				     		} else {
+				     			System.out.println("Invalid selection: " + (char)ch + "\n\n");
+				     		}
 				     }
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
+
 	
 	@Autowired
 	private IngredientService ingredientService;
 	
 	@Autowired
 	private DrinkService drinkService;
+	
 }
