@@ -19,7 +19,7 @@ public class Cappuccino implements Drink {
 		this.drinkId = drinkId;
 		ingredients.add(IngredientFactory.createIngredient(IngredientType.ESPRESSO, BigDecimal.valueOf(Double.valueOf(ingredientPriceMap.get(IngredientType.ESPRESSO.getName())))));
 		ingredients.add(IngredientFactory.createIngredient(IngredientType.ESPRESSO, BigDecimal.valueOf(Double.valueOf(ingredientPriceMap.get(IngredientType.ESPRESSO.getName())))));
-		ingredients.add(IngredientFactory.createIngredient(IngredientType.COFFEE, BigDecimal.valueOf(Double.valueOf(ingredientPriceMap.get(IngredientType.COFFEE.getName())))));
+		ingredients.add(IngredientFactory.createIngredient(IngredientType.STEAMED_MILK, BigDecimal.valueOf(Double.valueOf(ingredientPriceMap.get(IngredientType.STEAMED_MILK.getName())))));
 		ingredients.add(IngredientFactory.createIngredient(IngredientType.FOAMED_MILK, BigDecimal.valueOf(Double.valueOf(ingredientPriceMap.get(IngredientType.FOAMED_MILK.getName())))));
 	}
 
