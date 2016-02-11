@@ -61,12 +61,15 @@ public class Baristamatic {
 				     		isNotEnd = false;
 				     		break;
 				     	default: 
-				     		if(baristamatic.drinkService.isDrinkChoice((char)ch)) {
-				     			Drink theDrink = baristamatic.drinkService.vendDrink(ch);
-				     			System.out.println((theDrink.isInStock() ? "Dispensing: " : "Out Of Stock: ") + theDrink.getName() + "\n\n");
-				     		} else {
-				     			System.out.println("Invalid selection: " + (char)ch + "\n\n");
-				     		}
+				     		if( Character.isDigit((char)ch) && baristamatic.drinkService.isDrinkChoice((char)ch)) {
+					    		 Drink theDrink = baristamatic.drinkService.vendDrink(ch);
+					    		 System.out.println("\n" + (theDrink.isInStock() ? "Dispensing: " : "Out Of Stock: ") + theDrink.getName() + "\n\n");
+					    	 } else if(Character.isDigit((char)ch) && !baristamatic.drinkService.isDrinkChoice((char)ch)) {
+					    		 System.out.println("\nInvalid selection: " + (char)ch + "\n\n");
+					    	 } else if(Character.isLetter((char)ch)) {
+					    		 System.out.println("\nInvalid selection: " + (char)ch + "\n\n");
+					    	 }
+				     		 break;
 				     }
 				}
 			} catch (IOException e) {

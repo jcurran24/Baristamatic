@@ -85,6 +85,7 @@ public class DrinkServiceImpl implements DrinkService {
 		
 		if(!isInStock(drinkToBeVended)) {
 			drinkToBeVended.setInStock(false);
+			return drinkToBeVended;
 		} else {
 			drinkToBeVended.setInStock(true);
 		}
